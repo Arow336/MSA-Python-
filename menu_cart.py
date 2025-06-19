@@ -34,6 +34,22 @@ def display_cart(cart:dict, menu_items:dict) -> None:
         print(f"{quantity} {item} @ {menu_items[item]:.2f}: {quantity * menu_items[item]}")
     print(f"\nTotal: {total}")
 
+
+"""
+Function to write items from cart to a receipt
+Input: (dict)cart
+Output: none
+"""
+def print_receipt(cart:dict,menu_items:dict)->None:
+    with open("receipt.txt", "w") as receipt_file:
+        total = 0
+        #loop through the cart to print the output
+        for item, quantity in cart.items():
+            total = total + (quantity * menu_items[item])
+            receipt_file.write(f"{quantity} {item} @ {menu_items[item]:.2f}: {quantity * menu_items[item]}\n")
+        receipt_file.write(f"Total: ${total:.2f}\n")
+
+
 def main():
 
     menu_items = get_menu_dictionary("file.txt")
@@ -48,6 +64,8 @@ def main():
         #determine if we need to end the program    
         exit = order.lower()
         if exit == "end":
+            #print the receipt with items from the cart
+            print_receipt(item_cart,menu_items)
             break
     
         #validate that item is in menu_item dictionary
