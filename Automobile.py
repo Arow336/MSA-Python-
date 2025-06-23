@@ -5,7 +5,7 @@ class Automobile():
     #the constructor defines what happens when we create an automobile
     def __init__(self, make, model, vin, engine_size, owner, year, color):
         #define class properties with the parameter values
-        #make class properties directly inaccessible
+        #make class properties directly inaccessible (private - encapsulation)
         self.__make = make
         self.__model = model
         self.__vin = vin
